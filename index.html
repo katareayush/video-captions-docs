@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>video-captions — local, styled captions for Claude Code</title>
+  <meta name="description" content="A Claude Code plugin that transcribes a video's speech locally and burns in accurately-timed captions. Fully offline, cross-platform, describe the style in plain words." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9655;</text></svg>" />
+  <meta property="og:title" content="video-captions — local, styled captions for Claude Code" />
+  <meta property="og:description" content="Transcribe a video's speech locally and burn in accurately-timed captions. Offline, cross-platform, describe the style in plain words." />
+  <meta property="og:type" content="website" />
+  <script>
+    // set theme before paint to avoid flash
+    (function () {
+      document.documentElement.classList.add('js');
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if (t === 'dark') document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="brand" href="#top">video-captions <span class="by">/ by Ayush Katare</span></a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="#usage">Usage</a>
+      <a href="https://github.com/katareayush/video-captions" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme"></button>
+  </nav>
+
+  <div class="wrap">
+    <div class="container">
+
+      <!-- HERO -->
+      <header class="hero" id="top">
+        <span class="label reveal">Claude Code Plugin</span>
+        <h1 class="reveal">video-captions</h1>
+        <p class="lead reveal">
+          Give Claude a video and it transcribes the speech <em>locally</em> and burns in
+          accurately-timed captions. Fully offline. Cross-platform. Describe the style in plain words.
+        </p>
+        <div class="cta reveal">
+          <a class="btn btn-primary" href="#install">Get started</a>
+          <a class="btn btn-secondary" href="https://github.com/katareayush/video-captions" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </header>
+
+      <div class="divider"></div>
+
+      <!-- FEATURES -->
+      <section id="features">
+        <div class="section-head reveal">
+          <span class="label">What it does</span>
+          <h2>Accurate captions, on your machine</h2>
+        </div>
+        <div class="grid-cards">
+          <div class="card reveal">
+            <h3>Runs entirely locally</h3>
+            <p>Transcription via faster-whisper, rendering via ffmpeg. No API key, no upload. After a one-time model download it works fully offline.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Well-timed &amp; readable</h3>
+            <p>Word-level timestamps become short lines synced to the speech — no wall of text, no flicker, sensible on-screen duration.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Describe the look</h3>
+            <p>Minimal by default. Say <span class="ic">"big yellow captions at the top"</span> and Claude maps it to the right styling — no rigid presets.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Windows &amp; macOS</h3>
+            <p>Pure Python orchestration, no Homebrew or bash assumptions. Setup installs a subtitle-capable ffmpeg for you.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- INSTALL -->
+      <section id="install">
+        <div class="section-head reveal">
+          <span class="label">Install</span>
+          <h2>Two lines in Claude Code</h2>
+        </div>
+        <div class="stack">
+          <div class="reveal">
+            <div class="step-label">1 — add the marketplace &amp; install the plugin</div>
+            <div class="code" data-copy>
+              <button class="copy">Copy</button>
+<pre><span class="prompt">/</span>plugin marketplace add katareayush/video-captions
+<span class="prompt">/</span>plugin install video-captions@katareayush-marketplace</pre>
+            </div>
+          </div>
+          <div class="reveal">
+            <div class="step-label">2 — then just ask, in any project</div>
+            <div class="code" data-copy>
+              <button class="copy">Copy</button>
+<pre>add captions to demo.mp4</pre>
+            </div>
+            <p class="muted" style="margin-top:0.8rem;font-size:0.9rem;">
+              The first run installs its dependencies and downloads the Whisper model once (~150&nbsp;MB). Everything after is offline.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- USAGE -->
+      <section id="usage">
+        <div class="section-head reveal">
+          <span class="label">Usage</span>
+          <h2>Describe it, don't configure it</h2>
+        </div>
+        <p class="muted reveal" style="max-width:52ch;margin-bottom:2rem;">
+          With no styling it uses a clean, minimal look. Describe what you want and Claude
+          translates it into flags — pass only what you imply, the rest stays at the default.
+        </p>
+        <div class="table-wrap reveal">
+          <table>
+            <thead>
+              <tr><th>You say</th><th>Claude runs</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>(nothing)</td><td>clean white subtitles, bottom-centre</td></tr>
+              <tr><td>"big bold yellow captions at the top"</td><td><code>--pos top --size large --weight bold --color yellow</code></td></tr>
+              <tr><td>"white text, thick black outline"</td><td><code>--color white --outline-color black --outline 4</code></td></tr>
+              <tr><td>"minimal, no shadow"</td><td><code>--shadow 0</code></td></tr>
+              <tr><td>"a few words were wrong"</td><td><code>--model small</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- HOW IT WORKS -->
+      <section id="how">
+        <div class="section-head reveal">
+          <span class="label">How it works</span>
+          <h2>A small, local pipeline</h2>
+        </div>
+        <div class="code reveal">
+<pre class="pipeline">video  ─►  <b>faster-whisper</b>   ─►  words + timestamps
+                                    │
+                    <b>build captions</b>  ─►  synced, wrapped, positioned lines
+                                    │
+                         <b>ffmpeg</b>  ─►  &lt;name&gt;_captioned.mp4</pre>
+        </div>
+        <div class="stack" style="margin-top:2.5rem;">
+          <div class="reveal">
+            <span class="label">Requirements</span>
+            <ul class="req-list" style="margin-top:1rem;">
+              <li><span class="dot"></span><span><b>Python 3.9+</b> — the orchestration runtime.</span></li>
+              <li><span class="dot"></span><span><b>ffmpeg with subtitle support</b> — setup installs a compatible build automatically on macOS; Windows &amp; Linux ffmpeg already include it.</span></li>
+              <li><span class="dot"></span><span><b>No API key, no account, no network</b> after the one-time model download.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="cta reveal" style="margin-top:3rem;">
+          <a class="btn btn-primary" href="https://github.com/katareayush/video-captions" target="_blank" rel="noopener">Read the source</a>
+          <a class="btn btn-secondary" href="#install">Install it</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container inner">
+        <span class="copy-text">© <span id="year"></span> Ayush Katare</span>
+        <div class="socials">
+          <a href="https://github.com/katareayush" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ayush-katare/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+          </a>
+          <a href="mailto:katareayush2005@gmail.com" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+          </a>
+          <a href="https://x.com/katareayushh" target="_blank" rel="noopener" aria-label="X / Twitter">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.6l5.24 6.93 6.06-6.93Zm-1.29 19.5h2.04L6.48 3.24H4.29l13.32 17.41Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
