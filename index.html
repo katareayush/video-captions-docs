@@ -65,11 +65,19 @@
           </div>
           <div class="card reveal">
             <h3>Well-timed &amp; readable</h3>
-            <p>Word-level timestamps become short lines synced to the speech — no wall of text, no flicker, sensible on-screen duration.</p>
+            <p>Word-level timestamps become short lines synced to the speech — no wall of text, no flicker, and they fit any aspect ratio.</p>
           </div>
           <div class="card reveal">
             <h3>Describe the look</h3>
             <p>Minimal by default. Say <span class="ic">"big yellow captions at the top"</span> and Claude maps it to the right styling — no rigid presets.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Viral word-by-word</h3>
+            <p>The TikTok / Reels karaoke look — a few words at a time with the spoken word highlighted, driven by real word timestamps.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Subtitles, translation &amp; batch</h3>
+            <p>Export editable <span class="ic">.srt</span>/<span class="ic">.vtt</span>, translate any language to English, fix a word and re-burn, or caption a whole folder at once.</p>
           </div>
           <div class="card reveal">
             <h3>Windows &amp; macOS</h3>
@@ -128,11 +136,37 @@
             <tbody>
               <tr><td>(nothing)</td><td>clean white subtitles, bottom-centre</td></tr>
               <tr><td>"big bold yellow captions at the top"</td><td><code>--pos top --size large --weight bold --color yellow</code></td></tr>
-              <tr><td>"white text, thick black outline"</td><td><code>--color white --outline-color black --outline 4</code></td></tr>
-              <tr><td>"minimal, no shadow"</td><td><code>--shadow 0</code></td></tr>
+              <tr><td>"make it a viral TikTok caption"</td><td><code>--word-by-word</code></td></tr>
+              <tr><td>"it's in Hindi, give me English subs"</td><td><code>--translate</code></td></tr>
+              <tr><td>"just give me an SRT file"</td><td><code>--export srt --no-burn</code></td></tr>
+              <tr><td>"caption every video in this folder"</td><td><code>&lt;folder path&gt;</code></td></tr>
               <tr><td>"a few words were wrong"</td><td><code>--model small</code></td></tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- PRIVATE -->
+      <section id="private">
+        <div class="section-head reveal">
+          <span class="label">Private by design</span>
+          <h2>Nothing leaves your machine</h2>
+        </div>
+        <div class="grid-cards">
+          <div class="card reveal">
+            <h3>Your own Claude</h3>
+            <p>It's just a plugin — it runs inside your Claude Code and uses your own model. No third-party service sits in the middle.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Local compute</h3>
+            <p>Transcription and rendering happen on your computer with faster-whisper and ffmpeg. Your videos are never uploaded anywhere.</p>
+          </div>
+          <div class="card reveal">
+            <h3>No keys, no account</h3>
+            <p>No API key, no sign-up, no server. After the one-time model download it runs fully offline.</p>
+          </div>
         </div>
       </section>
 
