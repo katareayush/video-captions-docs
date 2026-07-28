@@ -1,13 +1,23 @@
 # video-captions — docs site
 
 Landing / documentation page for the [**video-captions**](https://github.com/katareayush/video-captions)
-Claude Code plugin. Plain static site (no build step), styled to match
+agent skill — which runs in Claude Code, Codex, Gemini CLI, Copilot, Cursor, Windsurf and
+OpenCode, plus any MCP host. Plain static site (no build step), styled to match
 [katareayush.com](https://katareayush.com).
 
 - `index.html` — the page
 - `styles.css` — design tokens + styles (mirrors the portfolio: Cormorant Garamond headings,
   Space Grotesk body, JetBrains/Fira Mono labels, light/dark)
-- `app.js` — theme toggle, scroll effects, copy buttons
+- `app.js` — theme toggle, scroll effects, copy buttons, and the agent list
+
+## Editing the supported agents
+
+The coverage grid and the install tabs are both generated from the single `AGENTS` array at
+the top of `app.js` — add or change a host there and both sections update together. Each
+entry needs `id`, `name`, `via` (the mechanism, e.g. "Agent Skills"), `cmd` and `note`.
+
+Keep it in step with `install.py` in the main repo: if a host's target directory changes
+there, the `cmd` here should change too.
 
 ## Preview locally
 
