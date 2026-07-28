@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>video-captions — local, styled captions for Claude Code</title>
-  <meta name="description" content="A Claude Code plugin that transcribes a video's speech locally and burns in accurately-timed captions. Fully offline, cross-platform, describe the style in plain words." />
+  <title>video-captions — local, styled captions for every AI coding agent</title>
+  <meta name="description" content="An agent skill that transcribes a video's speech locally and burns in accurately-timed captions. Runs in Claude Code, Codex, Gemini CLI, Copilot, Cursor, Windsurf and OpenCode. Fully offline, cross-platform, describe the style in plain words." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9655;</text></svg>" />
-  <meta property="og:title" content="video-captions — local, styled captions for Claude Code" />
-  <meta property="og:description" content="Transcribe a video's speech locally and burn in accurately-timed captions. Offline, cross-platform, describe the style in plain words." />
+  <meta property="og:title" content="video-captions — local, styled captions for every AI coding agent" />
+  <meta property="og:description" content="Transcribe a video's speech locally and burn in accurately-timed captions. One skill, every agent. Offline, cross-platform, describe the style in plain words." />
   <meta property="og:type" content="website" />
   <script>
     // set theme before paint to avoid flash
@@ -26,6 +26,7 @@
     <a class="brand" href="#top">video-captions <span class="by">/ by Ayush Katare</span></a>
     <div class="links">
       <a href="#features">Features</a>
+      <a href="#agents">Agents</a>
       <a href="#install">Install</a>
       <a href="#usage">Usage</a>
       <a href="https://github.com/katareayush/video-captions" target="_blank" rel="noopener">GitHub</a>
@@ -38,11 +39,14 @@
 
       <!-- HERO -->
       <header class="hero" id="top">
-        <span class="label reveal">Claude Code Plugin</span>
+        <span class="label reveal">Agent Skill · every major CLI</span>
         <h1 class="reveal">video-captions</h1>
         <p class="lead reveal">
-          Give Claude a video and it transcribes the speech <em>locally</em> and burns in
-          accurately-timed captions. Fully offline. Cross-platform. Describe the style in plain words.
+          Give any AI coding agent a video and it transcribes the speech <em>locally</em> and burns
+          in accurately-timed captions. Fully offline. Cross-platform. Describe the style in plain words.
+        </p>
+        <p class="agent-line reveal">
+          Claude Code · Codex · Gemini CLI · Copilot · Cursor · Windsurf · OpenCode · any MCP host
         </p>
         <div class="cta reveal">
           <a class="btn btn-primary" href="#install">Get started</a>
@@ -69,7 +73,11 @@
           </div>
           <div class="card reveal">
             <h3>Describe the look</h3>
-            <p>Minimal by default. Say <span class="ic">"big yellow captions at the top"</span> and Claude maps it to the right styling — no rigid presets.</p>
+            <p>Minimal by default. Say <span class="ic">"big yellow captions at the top"</span> and the agent maps it to the right styling — no rigid presets.</p>
+          </div>
+          <div class="card reveal">
+            <h3>One skill, every agent</h3>
+            <p>Built on the open Agent Skills standard, so a single <span class="ic">SKILL.md</span> serves Claude Code, Codex, Gemini CLI, Copilot, Cursor, Windsurf and OpenCode — with an MCP server for the rest.</p>
           </div>
           <div class="card reveal">
             <h3>Viral word-by-word</h3>
@@ -88,21 +96,47 @@
 
       <div class="divider"></div>
 
+      <!-- AGENTS -->
+      <section id="agents">
+        <div class="section-head reveal">
+          <span class="label">Coverage</span>
+          <h2>Wherever you already work</h2>
+        </div>
+        <p class="muted reveal" style="max-width:58ch;margin-bottom:2.5rem;">
+          Agent Skills became an open standard in December 2025. Because every host below reads
+          the same <span class="ic">SKILL.md</span>, one file covers all of them — no per-agent
+          rewrite, no separate install to maintain.
+        </p>
+        <div class="agent-grid reveal" id="agent-grid"></div>
+      </section>
+
+      <div class="divider"></div>
+
       <!-- INSTALL -->
       <section id="install">
         <div class="section-head reveal">
           <span class="label">Install</span>
-          <h2>Two lines in Claude Code</h2>
+          <h2>One command, or pick your agent</h2>
         </div>
         <div class="stack">
           <div class="reveal">
-            <div class="step-label">1 — add the marketplace &amp; install the plugin</div>
+            <div class="step-label">1 — install into every agent on your machine</div>
             <div class="code" data-copy>
               <button class="copy">Copy</button>
-<pre><span class="prompt">/</span>plugin marketplace add katareayush/video-captions
-<span class="prompt">/</span>plugin install video-captions@katareayush</pre>
+<pre>curl -fsSL https://raw.githubusercontent.com/katareayush/video-captions/main/install.py | python3</pre>
             </div>
+            <p class="muted" style="margin-top:0.8rem;font-size:0.9rem;">
+              It detects what you have installed and sets each one up. Prefer to do a single
+              host? Choose it below.
+            </p>
           </div>
+
+          <div class="reveal">
+            <div class="step-label">or — one agent at a time</div>
+            <div class="tabs" role="tablist" aria-label="Install per agent" id="install-tabs"></div>
+            <div id="install-panels"></div>
+          </div>
+
           <div class="reveal">
             <div class="step-label">2 — then just ask, in any project</div>
             <div class="code" data-copy>
@@ -125,25 +159,30 @@
           <h2>Describe it, don't configure it</h2>
         </div>
         <p class="muted reveal" style="max-width:52ch;margin-bottom:2rem;">
-          With no styling it uses a clean, minimal look. Describe what you want and Claude
+          With no styling it uses a clean, minimal look. Describe what you want and the agent
           translates it into flags — pass only what you imply, the rest stays at the default.
         </p>
         <div class="table-wrap reveal">
           <table>
             <thead>
-              <tr><th>You say</th><th>Claude runs</th></tr>
+              <tr><th>You say</th><th>The agent runs</th></tr>
             </thead>
             <tbody>
               <tr><td>(nothing)</td><td>clean white subtitles, bottom-centre</td></tr>
               <tr><td>"big bold yellow captions at the top"</td><td><code>--pos top --size large --weight bold --color yellow</code></td></tr>
               <tr><td>"make it a viral TikTok caption"</td><td><code>--word-by-word</code></td></tr>
+              <tr><td>"3 lowercase words on a rounded pill"</td><td><code>--preset</code></td></tr>
               <tr><td>"it's in Hindi, give me English subs"</td><td><code>--translate</code></td></tr>
               <tr><td>"just give me an SRT file"</td><td><code>--export srt --no-burn</code></td></tr>
               <tr><td>"caption every video in this folder"</td><td><code>&lt;folder path&gt;</code></td></tr>
-              <tr><td>"a few words were wrong"</td><td><code>--model small</code></td></tr>
+              <tr><td>"a few words were wrong"</td><td><code>--model medium --context "names, jargon"</code></td></tr>
             </tbody>
           </table>
         </div>
+        <p class="muted reveal" style="max-width:58ch;margin-top:1.5rem;font-size:0.9rem;">
+          No agent in the loop? Setup puts a <span class="ic">video-captions</span> launcher on
+          your PATH, so every flag above works straight from a terminal too.
+        </p>
       </section>
 
       <div class="divider"></div>
@@ -156,8 +195,8 @@
         </div>
         <div class="grid-cards">
           <div class="card reveal">
-            <h3>Your own Claude</h3>
-            <p>It's just a plugin — it runs inside your Claude Code and uses your own model. No third-party service sits in the middle.</p>
+            <h3>Your own agent</h3>
+            <p>It's just a skill — it runs inside the agent you already use, with your own model. No third-party service sits in the middle.</p>
           </div>
           <div class="card reveal">
             <h3>Local compute</h3>
