@@ -78,18 +78,25 @@ function escapeHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+function pad(s, n) {
+  while (s.length < n) s += ' ';
+  return s;
+}
+
 (function () {
-  var grid = document.getElementById('agent-grid');
-  if (grid) {
-    AGENTS.forEach(function (a) {
-      var cell = document.createElement('div');
-      cell.className = 'agent-cell';
-      cell.innerHTML =
-        '<span class="via">' + escapeHtml(a.via) + '</span>' +
-        '<span class="name">' + escapeHtml(a.name) + '</span>' +
-        '<span class="how">' + escapeHtml(a.cmd.split('\n')[0]) + '</span>';
-      grid.appendChild(cell);
-    });
+  // Coverage reads as one `install.py --list` run rather than ten cards — the
+  // section is answering "which hosts, and by what mechanism", which is a listing.
+  var out = document.getElementById('coverage-out');
+  if (out) {
+    var width = AGENTS.reduce(function (w, a) { return Math.max(w, a.name.length); }, 0) + 4;
+    var rows = AGENTS.map(function (a) {
+      return '  <span class="em">' + escapeHtml(pad(a.name, width)) + '</span>' +
+             '<span class="out">' + escapeHtml(a.via) + '</span>';
+    }).join('\n');
+    out.innerHTML =
+      '<span class="prompt">$</span> <span class="cmd">python3 install.py --list</span>\n\n' +
+      '<span class="out">Supported agents:</span>\n\n' + rows + '\n\n' +
+      '<span class="out">One SKILL.md serves every host above.</span>';
   }
 
   var tabs = document.getElementById('install-tabs');
@@ -122,10 +129,19 @@ function escapeHtml(s) {
     panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('aria-labelledby', 'tab-' + a.id);
     panel.hidden = i !== 0;
+    var lines = a.cmd.split('\n').map(function (line) {
+      return '<span class="prompt">' + (a.id === 'claude' ? '❯' : '$') + '</span> ' +
+             '<span class="cmd">' + escapeHtml(line) + '</span>';
+    }).join('\n');
+
     panel.innerHTML =
-      '<div class="code" data-copy>' +
-        '<button class="copy">Copy</button>' +
-        '<pre>' + escapeHtml(a.cmd) + '</pre>' +
+      '<div class="term" data-copy>' +
+        '<div class="term-bar">' +
+          '<span class="dot"></span><span class="dot"></span><span class="dot"></span>' +
+          '<span class="title">' + escapeHtml(a.name + ' · ' + a.via) + '</span>' +
+          '<button class="copy">Copy</button>' +
+        '</div>' +
+        '<div class="term-body"><pre>' + lines + '</pre></div>' +
       '</div>' +
       '<p class="note">' + escapeHtml(a.note) + '</p>';
     panels.appendChild(panel);
@@ -135,11 +151,22 @@ function escapeHtml(s) {
 // ── Copy buttons ──────────────────────────────────────────────────────────
 // Delegated, so the panels built above are covered without re-binding.
 document.addEventListener('click', function (e) {
-  var btn = e.target.closest('.code[data-copy] .copy');
+  var btn = e.target.closest('[data-copy] .copy');
   if (!btn) return;
-  var pre = btn.parentElement.querySelector('pre');
+  var block = btn.closest('[data-copy]');
+  var pre = block && block.querySelector('pre');
   if (!pre) return;
-  navigator.clipboard.writeText(pre.innerText.trim()).then(function () {
+
+  // Copy what you would actually type: prompt glyphs stripped, sample output
+  // left behind. Blocks with no prompt (plain snippets) copy whole.
+  var commands = pre.innerText.split('\n').filter(function (line) {
+    return /^\s*[$❯]\s/.test(line);
+  });
+  var text = commands.length
+    ? commands.map(function (l) { return l.replace(/^\s*[$❯]\s?/, ''); }).join('\n')
+    : pre.innerText;
+
+  navigator.clipboard.writeText(text.trim()).then(function () {
     btn.textContent = 'Copied';
     setTimeout(function () { btn.textContent = 'Copy'; }, 1400);
   });

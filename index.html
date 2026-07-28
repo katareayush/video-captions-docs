@@ -107,7 +107,13 @@
           the same <span class="ic">SKILL.md</span>, one file covers all of them — no per-agent
           rewrite, no separate install to maintain.
         </p>
-        <div class="agent-grid reveal" id="agent-grid"></div>
+        <div class="term reveal" id="coverage-term">
+          <div class="term-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="title">install.py --list</span>
+          </div>
+          <div class="term-body"><pre id="coverage-out"></pre></div>
+        </div>
       </section>
 
       <div class="divider"></div>
@@ -121,9 +127,13 @@
         <div class="stack">
           <div class="reveal">
             <div class="step-label">1 — install into every agent on your machine</div>
-            <div class="code" data-copy>
-              <button class="copy">Copy</button>
-<pre>curl -fsSL https://raw.githubusercontent.com/katareayush/video-captions/main/install.py | python3</pre>
+            <div class="term" data-copy>
+              <div class="term-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="title">bash</span>
+                <button class="copy">Copy</button>
+              </div>
+              <div class="term-body"><pre><span class="prompt">$</span> <span class="cmd">curl -fsSL https://raw.githubusercontent.com/katareayush/video-captions/main/install.py | python3</span></pre></div>
             </div>
             <p class="muted" style="margin-top:0.8rem;font-size:0.9rem;">
               It detects what you have installed and sets each one up. Prefer to do a single
@@ -139,9 +149,17 @@
 
           <div class="reveal">
             <div class="step-label">2 — then just ask, in any project</div>
-            <div class="code" data-copy>
-              <button class="copy">Copy</button>
-<pre>add captions to demo.mp4</pre>
+            <div class="term" data-copy>
+              <div class="term-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="title">your agent</span>
+                <button class="copy">Copy</button>
+              </div>
+              <div class="term-body"><pre><span class="prompt">❯</span> <span class="cmd">add captions to demo.mp4</span>
+
+<span class="out">Transcribing demo.mp4…</span>
+<span class="out">Burning captions into demo.mp4…</span>
+<span class="out">Done →</span> <span class="em">demo_captioned.mp4</span></pre></div>
             </div>
             <p class="muted" style="margin-top:0.8rem;font-size:0.9rem;">
               The first run installs its dependencies and downloads the Whisper model once. Everything after is offline.
