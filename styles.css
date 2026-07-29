@@ -130,14 +130,24 @@ nav .links a:hover { color: hsl(var(--foreground)); }
 .hero .lead { font-size: clamp(1.05rem, 2.2vw, 1.35rem); max-width: 40ch; color: hsl(var(--muted-foreground)); line-height: 1.55; }
 .hero .cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2.5rem; }
 
-.hero .agent-line {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  color: hsl(var(--muted-foreground) / 0.8);
-  margin-top: 1.6rem;
-  max-width: 46ch;
-  line-height: 2;
+.hero-install { margin-top: 2.5rem; max-width: 44rem; }
+
+/* Logo row — brand marks in currentColor, so they sit in the monochrome palette
+   and flip with the theme. Held back from full contrast so the install command
+   above stays the loudest thing in the hero. */
+.logos {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 1.6rem 1.9rem;
+  margin-top: 2.5rem;
+  color: hsl(var(--muted-foreground) / 0.6);
+}
+.logos .logo { display: inline-flex; align-items: center; transition: color 0.2s ease; }
+.logos .logo:hover { color: hsl(var(--foreground)); }
+.logos .logo svg { width: 21px; height: 21px; display: block; }
+/* Codex has no CC0 brand mark available, so its name carries the slot. */
+.logos .logo-text {
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.85rem; font-weight: 500; letter-spacing: -0.01em;
 }
 
 /* ── Sections ──────────────────────────────────────────────────────────── */
@@ -147,28 +157,7 @@ section { padding: 5rem 0; }
 .section-head h2 { font-size: clamp(2rem, 5vw, 3rem); margin-top: 0.6rem; }
 .divider { width: 100%; height: 1px; background: hsl(var(--border) / 0.4); }
 
-/* feature cards */
-.grid-cards { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-@media (min-width: 640px) { .grid-cards { grid-template-columns: 1fr 1fr; } }
-.card {
-  background: hsl(var(--card)); border: 1px solid hsl(var(--border) / 0.5);
-  border-radius: var(--radius); padding: 1.6rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover { border-color: hsl(var(--border)); }
-.dark .card { background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--accent))); box-shadow: 0 8px 32px rgba(0,0,0,0.18); border-color: hsl(var(--border) / 0.3); }
-.card h3 { font-size: 1.55rem; margin-bottom: 0.5rem; }
-.card p { font-size: 0.92rem; color: hsl(var(--muted-foreground)); }
 
-/* code blocks */
-.code {
-  position: relative; background: hsl(var(--muted) / 0.6);
-  border: 1px solid hsl(var(--border) / 0.6); border-radius: var(--radius);
-  padding: 1.1rem 1.2rem; overflow-x: auto;
-}
-.code pre { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.7; color: hsl(var(--foreground)); }
-.code .cmt { color: hsl(var(--muted-foreground)); }
-.code .prompt { color: hsl(var(--muted-foreground)); }
 .copy {
   position: absolute; top: 0.55rem; right: 0.55rem;
   font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em;

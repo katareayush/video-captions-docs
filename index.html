@@ -25,10 +25,9 @@
   <nav id="nav">
     <a class="brand" href="#top">video-captions <span class="by">/ by Ayush Katare</span></a>
     <div class="links">
-      <a href="#features">Features</a>
-      <a href="#agents">Agents</a>
-      <a href="#install">Install</a>
       <a href="#usage">Usage</a>
+      <a href="#install">Install</a>
+      <a href="#how">How it works</a>
       <a href="https://github.com/katareayush/video-captions" target="_blank" rel="noopener">GitHub</a>
     </div>
     <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme"></button>
@@ -39,134 +38,28 @@
 
       <!-- HERO -->
       <header class="hero" id="top">
-        <span class="label reveal">Agent Skill · every major CLI</span>
+        <span class="label reveal">Agent skill</span>
         <h1 class="reveal">video-captions</h1>
         <p class="lead reveal">
-          Give any AI coding agent a video and it transcribes the speech <em>locally</em> and burns
-          in accurately-timed captions. Fully offline. Cross-platform. Describe the style in plain words.
+          Give any AI coding agent a video and it transcribes the speech <em>locally</em> and
+          burns in accurately-timed captions. No API key. Nothing uploaded. Offline after a
+          one-time model download.
         </p>
-        <p class="agent-line reveal">
-          Claude Code · Codex · Gemini CLI · Copilot · Cursor · Windsurf · OpenCode · any MCP host
-        </p>
-        <div class="cta reveal">
-          <a class="btn btn-primary" href="#install">Get started</a>
-          <a class="btn btn-secondary" href="https://github.com/katareayush/video-captions" target="_blank" rel="noopener">View on GitHub</a>
+
+        <div class="hero-install reveal">
+          <div class="step-label">Install into every agent you have</div>
+          <div class="term" data-copy>
+            <div class="term-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">bash</span>
+              <button class="copy">Copy</button>
+            </div>
+            <div class="term-body"><pre><span class="prompt">$</span> <span class="cmd">curl -fsSL https://raw.githubusercontent.com/katareayush/video-captions/main/install.py | python3</span></pre></div>
+          </div>
         </div>
+
+        <div class="logos reveal" id="logos" aria-label="Supported agents"></div>
       </header>
-
-      <div class="divider"></div>
-
-      <!-- FEATURES -->
-      <section id="features">
-        <div class="section-head reveal">
-          <span class="label">What it does</span>
-          <h2>Accurate captions, on your machine</h2>
-        </div>
-        <div class="grid-cards">
-          <div class="card reveal">
-            <h3>Runs entirely locally</h3>
-            <p>Transcription via faster-whisper, rendering via ffmpeg. No API key, no upload. After a one-time model download it works fully offline.</p>
-          </div>
-          <div class="card reveal">
-            <h3>Well-timed &amp; readable</h3>
-            <p>Word-level timestamps become short lines synced to the speech — no wall of text, no flicker, and they fit any aspect ratio.</p>
-          </div>
-          <div class="card reveal">
-            <h3>Describe the look</h3>
-            <p>Minimal by default. Say <span class="ic">"big yellow captions at the top"</span> and the agent maps it to the right styling — no rigid presets.</p>
-          </div>
-          <div class="card reveal">
-            <h3>One skill, every agent</h3>
-            <p>Built on the open Agent Skills standard, so a single <span class="ic">SKILL.md</span> serves Claude Code, Codex, Gemini CLI, Copilot, Cursor, Windsurf and OpenCode — with an MCP server for the rest.</p>
-          </div>
-          <div class="card reveal">
-            <h3>Viral word-by-word</h3>
-            <p>The TikTok / Reels karaoke look — a few words at a time with the spoken word highlighted, driven by real word timestamps.</p>
-          </div>
-          <div class="card reveal">
-            <h3>Subtitles, translation &amp; batch</h3>
-            <p>Export editable <span class="ic">.srt</span>/<span class="ic">.vtt</span>, translate any language to English, fix a word and re-burn, or caption a whole folder at once.</p>
-          </div>
-          <div class="card reveal">
-            <h3>Windows &amp; macOS</h3>
-            <p>Pure Python orchestration, no Homebrew or bash assumptions. Setup installs a subtitle-capable ffmpeg for you.</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-      <!-- AGENTS -->
-      <section id="agents">
-        <div class="section-head reveal">
-          <span class="label">Coverage</span>
-          <h2>Wherever you already work</h2>
-        </div>
-        <p class="muted reveal" style="max-width:58ch;margin-bottom:2.5rem;">
-          Agent Skills became an open standard in December 2025. Because every host below reads
-          the same <span class="ic">SKILL.md</span>, one file covers all of them — no per-agent
-          rewrite, no separate install to maintain.
-        </p>
-        <div class="term reveal" id="coverage-term">
-          <div class="term-bar">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="title">install.py --list</span>
-          </div>
-          <div class="term-body"><pre id="coverage-out"></pre></div>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-      <!-- INSTALL -->
-      <section id="install">
-        <div class="section-head reveal">
-          <span class="label">Install</span>
-          <h2>One command, or pick your agent</h2>
-        </div>
-        <div class="stack">
-          <div class="reveal">
-            <div class="step-label">1 — install into every agent on your machine</div>
-            <div class="term" data-copy>
-              <div class="term-bar">
-                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                <span class="title">bash</span>
-                <button class="copy">Copy</button>
-              </div>
-              <div class="term-body"><pre><span class="prompt">$</span> <span class="cmd">curl -fsSL https://raw.githubusercontent.com/katareayush/video-captions/main/install.py | python3</span></pre></div>
-            </div>
-            <p class="muted" style="margin-top:0.8rem;font-size:0.9rem;">
-              It detects what you have installed and sets each one up. Prefer to do a single
-              host? Choose it below.
-            </p>
-          </div>
-
-          <div class="reveal">
-            <div class="step-label">or — one agent at a time</div>
-            <div class="tabs" role="tablist" aria-label="Install per agent" id="install-tabs"></div>
-            <div id="install-panels"></div>
-          </div>
-
-          <div class="reveal">
-            <div class="step-label">2 — then just ask, in any project</div>
-            <div class="term" data-copy>
-              <div class="term-bar">
-                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                <span class="title">your agent</span>
-                <button class="copy">Copy</button>
-              </div>
-              <div class="term-body"><pre><span class="prompt">❯</span> <span class="cmd">add captions to demo.mp4</span>
-
-<span class="out">Transcribing demo.mp4…</span>
-<span class="out">Burning captions into demo.mp4…</span>
-<span class="out">Done →</span> <span class="em">demo_captioned.mp4</span></pre></div>
-            </div>
-            <p class="muted" style="margin-top:0.8rem;font-size:0.9rem;">
-              The first run installs its dependencies and downloads the Whisper model once. Everything after is offline.
-            </p>
-          </div>
-        </div>
-      </section>
 
       <div class="divider"></div>
 
@@ -205,25 +98,19 @@
 
       <div class="divider"></div>
 
-      <!-- PRIVATE -->
-      <section id="private">
+      <!-- INSTALL -->
+      <section id="install">
         <div class="section-head reveal">
-          <span class="label">Private by design</span>
-          <h2>Nothing leaves your machine</h2>
+          <span class="label">Install</span>
+          <h2>One command covers it</h2>
         </div>
-        <div class="grid-cards">
-          <div class="card reveal">
-            <h3>Your own agent</h3>
-            <p>It's just a skill — it runs inside the agent you already use, with your own model. No third-party service sits in the middle.</p>
-          </div>
-          <div class="card reveal">
-            <h3>Local compute</h3>
-            <p>Transcription and rendering happen on your computer with faster-whisper and ffmpeg. Your videos are never uploaded anywhere.</p>
-          </div>
-          <div class="card reveal">
-            <h3>No keys, no account</h3>
-            <p>No API key, no sign-up, no server. After the one-time model download it runs fully offline.</p>
-          </div>
+        <p class="muted reveal" style="max-width:56ch;margin-bottom:2rem;">
+          The command in the hero detects every agent on your machine and installs into each.
+          These are the only cases that differ.
+        </p>
+        <div class="reveal">
+          <div class="tabs" role="tablist" aria-label="Install variants" id="install-tabs"></div>
+          <div id="install-panels"></div>
         </div>
       </section>
 
