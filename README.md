@@ -10,6 +10,16 @@ OpenCode, plus any MCP host. Plain static site (no build step), styled to match
   Space Grotesk body, JetBrains/Fira Mono labels, light/dark)
 - `app.js` — theme toggle, scroll effects, copy buttons, and the agent list
 
+## Logo credits
+
+Agent marks are inlined as SVG in `app.js`, from
+[lobehub/lobe-icons](https://github.com/lobehub/lobe-icons) (MIT) and
+[simple-icons](https://github.com/simple-icons/simple-icons) (CC0).
+
+Claude Code, Gemini CLI and Zed keep their brand colour. The rest — OpenAI, GitHub Copilot,
+Cursor, Windsurf, opencode — are black by brand, so they render in `currentColor` and flip
+with the theme instead of vanishing into the background.
+
 ## Editing the supported agents
 
 The coverage grid and the install tabs are both generated from the single `AGENTS` array at

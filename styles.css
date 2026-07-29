@@ -132,23 +132,24 @@ nav .links a:hover { color: hsl(var(--foreground)); }
 
 .hero-install { margin-top: 2.5rem; max-width: 44rem; }
 
-/* Logo row — brand marks in currentColor, so they sit in the monochrome palette
-   and flip with the theme. Held back from full contrast so the install command
-   above stays the loudest thing in the hero. */
+/* Logo row. Claude Code and Gemini CLI carry their own brand colour; the rest are
+   black-by-brand (OpenAI, Copilot, Cursor, Windsurf, opencode), so they inherit
+   currentColor and flip with the theme rather than disappearing into it. */
 .logos {
   display: flex; align-items: center; flex-wrap: wrap;
-  gap: 1.6rem 1.9rem;
+  gap: 1.5rem 1.8rem;
   margin-top: 2.5rem;
-  color: hsl(var(--muted-foreground) / 0.6);
+  color: hsl(var(--foreground) / 0.75);
 }
-.logos .logo { display: inline-flex; align-items: center; transition: color 0.2s ease; }
+.logos .logo {
+  display: inline-flex; align-items: center;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+.logos .logo svg { width: 22px; height: 22px; display: block; }
 .logos .logo:hover { color: hsl(var(--foreground)); }
-.logos .logo svg { width: 21px; height: 21px; display: block; }
-/* Codex has no CC0 brand mark available, so its name carries the slot. */
-.logos .logo-text {
-  font-family: 'Fira Mono', monospace;
-  font-size: 0.85rem; font-weight: 500; letter-spacing: -0.01em;
-}
+/* Coloured marks ignore currentColor, so match the resting weight with opacity. */
+.logos .logo-color { opacity: 0.9; }
+.logos .logo-color:hover { opacity: 1; }
 
 /* ── Sections ──────────────────────────────────────────────────────────── */
 section { padding: 5rem 0; }
